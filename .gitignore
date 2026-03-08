@@ -1,0 +1,25 @@
+# Build
+bin/
+obj/
+
+# Rider / IntelliJ
+.idea/
+*.sln.iml
+
+# Visual Studio
+.vs/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# MAUI / Android
+*.apk
+*.aab
+
+# NuGet
+*.nupkg
+packages/
