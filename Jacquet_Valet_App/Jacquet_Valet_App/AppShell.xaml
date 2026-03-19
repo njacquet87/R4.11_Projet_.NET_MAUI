@@ -5,21 +5,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Jacquet_Valet_App"
     Title="Jacquet_Valet_App"
-    Shell.TabBarBackgroundColor="White"
     Shell.TabBarForegroundColor="Black"
     Shell.TabBarUnselectedColor="Blue"
-    Shell.TabBarTitleColor="Black">
+    Shell.TabBarBackgroundColor="LightGray"
+    Shell.TabBarTitleColor="gray">
     
     <TabBar>
-        <Tab Title="onglet1" Icon="dotnet_bot.png">
+        <Tab Title="Home" Icon="home.png">
             <ShellContent ContentTemplate="{DataTemplate local:Onglet1Page}"></ShellContent>
         </Tab>
         
-        <Tab Title="onglet2" Icon="dotnet_bot.png">
+        <Tab Title="Liste" Icon="liste.png">
             <ShellContent ContentTemplate="{DataTemplate local:Onglet2Page}"></ShellContent>
         </Tab>
         
-        <Tab Title="onglet3" Icon="dotnet_bot.png">
+        <Tab Title="Ajout" Icon="plus.png">
             <ShellContent ContentTemplate="{DataTemplate local:Onglet3Page}"></ShellContent>
         </Tab>
         
