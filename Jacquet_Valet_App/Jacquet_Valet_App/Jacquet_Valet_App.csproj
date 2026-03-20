@@ -49,10 +49,9 @@
 
     <ItemGroup>
         <!-- App Icon -->
-        <MauiIcon Include="Resources\AppIcon\appicon.png" />
+        <MauiIcon Include="Resources\AppIcon\appicon.png"/>
         
         <!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\splash.png" />
 
         <!-- Images -->
         <MauiImage Include="Resources\Images\*"/>
@@ -68,12 +67,6 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0"/>
-    </ItemGroup>
-
-    <ItemGroup>
-      <MauiSplashScreen Include="Resources\Splash\splash.png">
-        <BaseSize>128,128</BaseSize>
-      </MauiSplashScreen>
     </ItemGroup>
 
 </Project>

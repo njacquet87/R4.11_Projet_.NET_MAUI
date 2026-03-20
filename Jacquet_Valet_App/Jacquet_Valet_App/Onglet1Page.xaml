@@ -4,7 +4,20 @@
              x:Class="Jacquet_Valet_App.Onglet1Page">
 
     <StackLayout Padding="20">
-         <Label Text="Onglet 1" FontSize="24" HorizontalOptions="Center"/>
+         <Label Text="Bienvenu sur notre App" FontSize="24" HorizontalOptions="Center"/>
+         <Label Text="App de bierre" FontSize="12" HorizontalOptions="Center"></Label>
+         
+         <FlexLayout Padding="20" JustifyContent="Center">
+             <!-- images provisoires -->
+             <Image Source="dotnet_bot.png" WidthRequest="150" HeightRequest="150" Margin="25"/>
+             <Image Source="dotnet_bot.png" WidthRequest="150" HeightRequest="150" Margin="25"/>
+         </FlexLayout>
+         
+         <Button Text="Cliquer pour voir le GIF"
+                 VerticalOptions="Center"
+                 HorizontalOptions="Center"
+                 Clicked="OnButtonClicked"></Button>
+         
     </StackLayout>
 
 </ContentPage>
