@@ -8,7 +8,7 @@ namespace Jacquet_Valet_App.ViewModels
     public partial class Onglet2ViewModel : ObservableObject
     {
         private readonly MovieInterface _movieInterface;
-        private bool _isLoading = false;
+        private bool _isLoading;
 
         [ObservableProperty]
         private ObservableCollection<Jacquet_Valet_App.Models.MovieDto> movieList;
