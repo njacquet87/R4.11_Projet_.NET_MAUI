@@ -1,15 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Jacquet_Valet_App.ViewModels;
 
 namespace Jacquet_Valet_App;
 
 public partial class Onglet2Page : ContentPage
 {
-    public Onglet2Page()
+    private readonly Onglet2ViewModel _viewModel;
+
+    public Onglet2Page(Onglet2ViewModel viewModel)
     {
         InitializeComponent();
+        _viewModel = viewModel;
+        BindingContext = _viewModel;
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await _viewModel.LoadMovies();
     }
 }

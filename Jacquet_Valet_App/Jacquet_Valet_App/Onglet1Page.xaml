@@ -11,7 +11,7 @@
     
     <StackLayout Padding="20">
          <Label Text="Bienvenu sur notre App" FontSize="24" HorizontalOptions="Center"/>
-         <Label Text="App de bierre" FontSize="12" HorizontalOptions="Center"></Label>
+         <Label Text="App de films" FontSize="12" HorizontalOptions="Center"></Label>
          
          <FlexLayout Padding="20" JustifyContent="Center">
              <!-- images provisoires -->
