@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Jacquet_Valet_App.Interface;
 using Jacquet_Valet_App.Models;
 
@@ -8,10 +9,11 @@ namespace Jacquet_Valet_App.ViewModels
     public partial class Onglet2ViewModel : ObservableObject
     {
         private readonly MovieInterface _movieInterface;
-        private bool _isLoading;
 
+        // l'observablePorperty permet de notifier la vue lorsque la liste de films change
+        
         [ObservableProperty]
-        private ObservableCollection<Jacquet_Valet_App.Models.MovieDto> movieList;
+        private ObservableCollection<MovieDto> movieList;
 
         [ObservableProperty]
         private string errorMessage;
@@ -19,58 +21,41 @@ namespace Jacquet_Valet_App.ViewModels
         [ObservableProperty]
         private bool isErrorVisible;
 
-        [ObservableProperty]
-        private bool isLoadingVisible;
-
+        // constructeur qui injecte l'interface MovieInterface pour accéder aux données des films
         public Onglet2ViewModel(MovieInterface movieInterface)
         {
             _movieInterface = movieInterface;
-            movieList = new ObservableCollection<Jacquet_Valet_App.Models.MovieDto>();
+            movieList = new ObservableCollection<MovieDto>();
             errorMessage = string.Empty;
-            isErrorVisible = false;
-            isLoadingVisible = false;
         }
 
-        public async Task LoadMovies()
+        // relayCommand permet de charger les films de manière asynchrone et de gérer les erreurs éventuelles
+        [RelayCommand]
+        private async Task LoadMovies()
         {
-            // Éviter les appels multiples simultanés
-            if (_isLoading)
-                return;
+            IsErrorVisible = false;
+            ErrorMessage = string.Empty;
 
             try
             {
-                _isLoading = true;
-                IsErrorVisible = false;
-                ErrorMessage = string.Empty;
-                IsLoadingVisible = true;
-
+                // on récupère la liste des films depuis l'interface MovieInterface et 
+                // on les ajoute à l'observableCollection MovieList pour que la vue puisse les afficher
                 var movies = await _movieInterface.GetAllMovies();
 
-                if (movies != null && movies.Count > 0)
+                if (movies != null)
                 {
                     MovieList.Clear();
                     foreach (var movie in movies)
                     {
                         MovieList.Add(movie);
                     }
-
-                    Console.WriteLine($"Films chargés: {MovieList.Count}");
                 }
-                
-                IsLoadingVisible = false;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erreur lors du chargement des films: {ex.Message}");
-                ErrorMessage = $"Erreur : {ex.Message}";
+                ErrorMessage = $"Erreur lors du chargement des films : {ex.Message}";
                 IsErrorVisible = true;
-                IsLoadingVisible = false;
-            }
-            finally
-            {
-                _isLoading = false;
             }
         }
     }
 }
-

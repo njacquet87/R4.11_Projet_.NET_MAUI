@@ -13,9 +13,10 @@ public partial class Onglet2Page : ContentPage
         BindingContext = _viewModel;
     }
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
-        await _viewModel.LoadMovies();
+        // Charger les films lorsque la page apparaît
+        _viewModel.LoadMoviesCommand.Execute(null);
     }
 }

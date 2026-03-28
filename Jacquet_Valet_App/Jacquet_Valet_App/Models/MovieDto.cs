@@ -2,6 +2,7 @@
 
 namespace Jacquet_Valet_App.Models;
 
+// Models pour les films correspondants au résultat de l'API
 public class MovieDto
 {
     [JsonPropertyName("id")]
