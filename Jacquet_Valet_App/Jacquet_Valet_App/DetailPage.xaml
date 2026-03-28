@@ -8,12 +8,7 @@
             <StackLayout Padding="20" Spacing="15">
                 <Label Text="{Binding Movie.Title}" FontSize="24" HorizontalOptions="Center" FontAttributes="Bold"/>
 
-                <Image Aspect="AspectFit" HeightRequest="400" HorizontalOptions="Center">
-                    <!-- Binding de l'url du film avec la source de l'image -->
-                    <Image.Source>
-                        <UriImageSource Uri="{Binding Movie.PosterURL}" CachingEnabled="True" CacheValidity="14"/>
-                    </Image.Source>
-                </Image>
+                <Image Source="{Binding Movie.PosterURL}" Aspect="AspectFit" HeightRequest="400" HorizontalOptions="Center" BackgroundColor="White"/>
                 
                 <!-- Affichage des détails du film -->
                 <HorizontalStackLayout Padding="20" HorizontalOptions="Center">
