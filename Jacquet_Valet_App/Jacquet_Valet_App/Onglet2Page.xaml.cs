@@ -4,9 +4,9 @@ namespace Jacquet_Valet_App;
 
 public partial class Onglet2Page : ContentPage
 {
-    private readonly Onglet2ViewModel _viewModel;
+    private readonly MoviesViewModel _viewModel;
 
-    public Onglet2Page(Onglet2ViewModel viewModel)
+    public Onglet2Page(MoviesViewModel viewModel)
     {
         InitializeComponent();
         _viewModel = viewModel;

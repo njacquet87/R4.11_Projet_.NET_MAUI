@@ -29,10 +29,16 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="8" Spacing="10" Margin="5">
-                            <Frame CornerRadius="10" HasShadow="True" Padding="0" IsClippedToBounds="True" BorderColor="Gray">
-                                <Image Source="{Binding PosterURL}" Aspect="AspectFill" HeightRequest="200" WidthRequest="130"/>
-                            </Frame>
-                            <Label Text="{Binding Title}" FontSize="13" FontAttributes="Bold" LineBreakMode="TailTruncation" MaxLines="2" TextColor="White"/>
+                            <Label Text="{Binding Title}" FontSize="13" FontAttributes="Bold" HorizontalOptions="Center" TextColor="White"/>
+                            <ImageButton Source="{Binding PosterURL}" 
+                                         Aspect="AspectFill" 
+                                         HeightRequest="200" 
+                                         WidthRequest="130"
+                                         CornerRadius="10"
+                                         BorderColor="Gray"
+                                         BorderWidth="1"
+                                         Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.GoToDetailCommand}" 
+                                         CommandParameter="{Binding .}"/>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

@@ -6,7 +6,7 @@ using Jacquet_Valet_App.Models;
 
 namespace Jacquet_Valet_App.ViewModels
 {
-    public partial class Onglet2ViewModel : ObservableObject
+    public partial class MoviesViewModel : ObservableObject
     {
         private readonly MovieInterface _movieInterface;
 
@@ -22,7 +22,7 @@ namespace Jacquet_Valet_App.ViewModels
         private bool isErrorVisible;
 
         // constructeur qui injecte l'interface MovieInterface pour accéder aux données des films
-        public Onglet2ViewModel(MovieInterface movieInterface)
+        public MoviesViewModel(MovieInterface movieInterface)
         {
             _movieInterface = movieInterface;
             movieList = new ObservableCollection<MovieDto>();
@@ -56,6 +56,16 @@ namespace Jacquet_Valet_App.ViewModels
                 ErrorMessage = $"Erreur lors du chargement des films : {ex.Message}";
                 IsErrorVisible = true;
             }
+        }
+
+        // fonction pour naviguer vers la page de détail d'un film sélectionné, en passant l'id du film en paramètre de navigation
+        [RelayCommand]
+        private async Task GoToDetail(MovieDto movie)
+        {
+            if (movie == null)
+                return;
+
+            await Shell.Current.GoToAsync($"detail?id={movie.Id}");
         }
     }
 }

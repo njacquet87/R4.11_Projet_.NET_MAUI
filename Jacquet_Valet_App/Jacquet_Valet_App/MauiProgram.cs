@@ -24,9 +24,11 @@ public static class MauiProgram
         {
             c.BaseAddress = new Uri("https://api.sampleapis.com");
         });
-
-        builder.Services.AddTransient<ViewModels.Onglet2ViewModel>();
+        
+        builder.Services.AddTransient<ViewModels.MoviesViewModel>();
         builder.Services.AddTransient<Onglet2Page>();
+        builder.Services.AddTransient<ViewModels.MoviesDetailViewModel>();
+        builder.Services.AddTransient<DetailPage>();
 
 #if DEBUG
         builder.Logging.AddDebug();
@@ -35,4 +37,3 @@ public static class MauiProgram
         return builder.Build();
     }
 }
-
