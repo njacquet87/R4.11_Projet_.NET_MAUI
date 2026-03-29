@@ -5,7 +5,30 @@
              x:Class="Jacquet_Valet_App.Onglet3Page">
     
     <StackLayout Padding="20">
-        <Label Text="Onglet 3" FontSize="24" HorizontalOptions="Center"/>
+        <Label Text="Ajouter un film" FontSize="24" HorizontalOptions="Center" Margin="0,20,0,20"/>
+        
+        <Label Text="Titre : " HorizontalOptions="Center"/>
+        <Entry x:Name="TitleEntry" Placeholder="Entrez le titre du film" HorizontalOptions="Center"/>
+        
+        <Label Text="Poster du film : " HorizontalOptions="Center" Margin="0,10,0,10"/>
+        
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="5" Margin="0,20,0,20">
+            <Image x:Name="SelectedImage" HeightRequest="200" WidthRequest="100" Margin="0,10,0,10" BackgroundColor="White"/>
+
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                <Button Text="Choisir une image" Clicked="OnPickPhotoButtonClicked" HorizontalOptions="Center"/>
+                <Label Text="Ou" HorizontalOptions="Center"/>
+                <Button Text="Prendre une photo" Clicked="OnTakePhotoButtonClicked" HorizontalOptions="Center"/>
+            </StackLayout>
+        </HorizontalStackLayout>
+        
+        <Label Text="Id IMDB" HorizontalOptions="Center" Margin="0,20,0,0"/>
+        <Entry x:Name="ImdbIdEntry" Placeholder="Entrez l'id IMDB" HorizontalOptions="Center"/>
+        
+        <Button Text="Ajouter le film" Clicked="OnAddMovieButtonClicked" HorizontalOptions="Center" Margin="0,20,0,0"/>
+        
+        <!-- Affichage du résultat de l'ajout du film ou d'erreur -->
+        
     </StackLayout>
     
 </ContentPage>
