@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Jacquet_Valet_App.Interface;
 using Jacquet_Valet_App.Models;
+using Jacquet_Valet_App.Services;
 
 namespace Jacquet_Valet_App.ViewModels
 {
@@ -25,7 +26,7 @@ namespace Jacquet_Valet_App.ViewModels
         public MoviesViewModel(MovieInterface movieInterface)
         {
             _movieInterface = movieInterface;
-            movieList = new ObservableCollection<MovieDto>();
+            MovieList = MovieDataService.Movies; // Utiliser la collection partagée
             errorMessage = string.Empty;
         }
 
@@ -38,16 +39,16 @@ namespace Jacquet_Valet_App.ViewModels
 
             try
             {
-                // on récupère la liste des films depuis l'interface MovieInterface et 
-                // on les ajoute à l'observableCollection MovieList pour que la vue puisse les afficher
                 var movies = await _movieInterface.GetAllMovies();
-
                 if (movies != null)
                 {
-                    MovieList.Clear();
+                    // Ajoute uniquement les films qui ne sont pas déjà dans la liste
                     foreach (var movie in movies)
                     {
-                        MovieList.Add(movie);
+                        if (!MovieList.Any(m => m.ImdbId == movie.ImdbId))
+                        {
+                            MovieList.Add(movie);
+                        }
                     }
                 }
             }
