@@ -55,14 +55,7 @@ namespace Jacquet_Valet_App.ViewModels
 
             if (Movie != null)
             {
-                if (MovieDataService.FilmsAVoir.Any(m => m.Id == Movie.Id))
-                {
-                    AddToFilmsAVoirButtonText = "Film ajouté";
-                }
-                if (MovieDataService.FilmsVus.Any(m => m.Id == Movie.Id))
-                {
-                    AddToFilmsVusButtonText = "Film ajouté";
-                }
+                UpdateButtonsState();
             }
         }
         
@@ -75,23 +68,72 @@ namespace Jacquet_Valet_App.ViewModels
             }
         }
 
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(CanAddToFilmsAVoir))]
         private void AddToFilmsAVoir()
         {
-            if (Movie != null && !MovieDataService.FilmsAVoir.Any(m => m.Id == Movie.Id))
+            if (Movie == null) return;
+
+            // Si le film est dans les films vus, on le supprime de cette liste
+            var filmVu = MovieDataService.FilmsVus.FirstOrDefault(m => m.Id == Movie.Id);
+            if (filmVu != null)
+            {
+                MovieDataService.FilmsVus.Remove(filmVu);
+            }
+
+            // On ajoute le film à la liste "à voir" s'il n'y est pas déjà
+            if (!MovieDataService.FilmsAVoir.Any(m => m.Id == Movie.Id))
             {
                 MovieDataService.FilmsAVoir.Add(Movie);
-                AddToFilmsAVoirButtonText = "Film ajouté";
             }
+            
+            UpdateButtonsState();
         }
 
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(CanAddToFilmsVus))]
         private void AddToFilmsVus()
         {
-            if (Movie != null && !MovieDataService.FilmsVus.Any(m => m.Id == Movie.Id))
+            if (Movie == null) return;
+
+            // Si le film est dans les films à voir, on le supprime de cette liste
+            var filmAVoir = MovieDataService.FilmsAVoir.FirstOrDefault(m => m.Id == Movie.Id);
+            if (filmAVoir != null)
+            {
+                MovieDataService.FilmsAVoir.Remove(filmAVoir);
+            }
+
+            // On ajoute le film à la liste "vus" s'il n'y est pas déjà
+            if (!MovieDataService.FilmsVus.Any(m => m.Id == Movie.Id))
             {
                 MovieDataService.FilmsVus.Add(Movie);
-                AddToFilmsVusButtonText = "Film ajouté";
+            }
+            
+            UpdateButtonsState();
+        }
+
+        private bool CanAddToFilmsAVoir() => Movie != null && !MovieDataService.FilmsAVoir.Any(m => m.Id == Movie.Id) && !MovieDataService.FilmsVus.Any(m => m.Id == Movie.Id);
+        private bool CanAddToFilmsVus() => Movie != null && !MovieDataService.FilmsVus.Any(m => m.Id == Movie.Id);
+
+        private void UpdateButtonsState()
+        {
+            AddToFilmsAVoirCommand.NotifyCanExecuteChanged();
+            AddToFilmsVusCommand.NotifyCanExecuteChanged();
+            
+            if (MovieDataService.FilmsAVoir.Any(m => m.Id == MovieId))
+            {
+                AddToFilmsAVoirButtonText = "Film ajouté (à voir)";
+            }
+            else
+            {
+                AddToFilmsAVoirButtonText = "Ajouter aux films à voir";
+            }
+
+            if (MovieDataService.FilmsVus.Any(m => m.Id == MovieId))
+            {
+                AddToFilmsVusButtonText = "Film ajouté (vu)";
+            }
+            else
+            {
+                AddToFilmsVusButtonText = "Ajouter aux films vus";
             }
         }
     }
