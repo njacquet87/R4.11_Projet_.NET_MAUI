@@ -28,7 +28,9 @@
                 <DataTemplate>
                     <StackLayout>
                         <Label Text="{Binding Title}" HorizontalOptions="Center"></Label>
-                        <Image Source="{Binding PosterURL}" Aspect="AspectFit" HeightRequest="300" WidthRequest="200" HorizontalOptions="Center" BackgroundColor="White"/>
+                        <Frame CornerRadius="10" BorderColor="Gray" Padding="0" HasShadow="True" HeightRequest="300" WidthRequest="200" HorizontalOptions="Center">
+                            <Image Source="{Binding PosterURL}" Aspect="AspectFill" BackgroundColor="White"/>
+                        </Frame>
                     </StackLayout>
                 </DataTemplate>
             </CarouselView.ItemTemplate>

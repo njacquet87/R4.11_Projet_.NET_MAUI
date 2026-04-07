@@ -20,6 +20,8 @@
                     <Label Text="Id IMBD : "></Label>
                     <Label Text="{Binding Movie.ImdbId}" FontSize="14" HorizontalOptions="Center"/>
                 </HorizontalStackLayout>
+                
+                <Button Text="{Binding AddToFilmsAVoirButtonText}" Command="{Binding AddToFilmsAVoirCommand}" HorizontalOptions="Center" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

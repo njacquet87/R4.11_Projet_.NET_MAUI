@@ -29,9 +29,11 @@ public static class MauiProgram
         builder.Services.AddTransient<Onglet2Page>();
         builder.Services.AddTransient<ViewModels.MoviesDetailViewModel>();
         builder.Services.AddTransient<DetailPage>();
-
         builder.Services.AddTransient<ViewModels.CarouselViewModel>();
         builder.Services.AddTransient<Onglet1Page>();
+        builder.Services.AddTransient<ViewModels.FilmsAVoirViewModel>();
+        builder.Services.AddTransient<FilmsAVoirPage>();
+        builder.Services.AddTransient<Onglet4Page>();
 
 #if DEBUG
         builder.Logging.AddDebug();

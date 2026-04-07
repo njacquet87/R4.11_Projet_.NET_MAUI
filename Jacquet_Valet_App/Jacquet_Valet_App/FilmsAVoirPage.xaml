@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Jacquet_Valet_App.FilmsAVoirPage"
+             Title="Films à voir">
+    <StackLayout Padding="20">
+        <Label Text="Liste des films à voir" FontSize="24" HorizontalOptions="Center" FontAttributes="Bold"/>
+
+        <CollectionView ItemsSource="{Binding FilmsAVoir}"
+                        SelectionMode="None"
+                        EmptyView="Aucun film à voir">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" Spacing="10">
+                        <Label Text="{Binding Title}" FontSize="16" FontAttributes="Bold" />
+                        <Image Source="{Binding PosterURL}" HeightRequest="200" Aspect="AspectFit" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
+

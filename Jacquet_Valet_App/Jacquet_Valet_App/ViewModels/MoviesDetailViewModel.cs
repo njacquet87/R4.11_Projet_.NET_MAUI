@@ -19,9 +19,13 @@ namespace Jacquet_Valet_App.ViewModels
         [ObservableProperty]
         private int movieId;
 
+        [ObservableProperty]
+        private string addToFilmsAVoirButtonText;
+
         public MoviesDetailViewModel(MovieInterface movieInterface)
         {
             _movieInterface = movieInterface;
+            AddToFilmsAVoirButtonText = "Ajouter aux films à voir";
         }
 
         [RelayCommand]
@@ -33,6 +37,10 @@ namespace Jacquet_Valet_App.ViewModels
             // pour éviter de faire planter l'application
             try
             {
+                if (MovieDataService.FilmsAVoir.Any(dto => dto.Id == Movie.Id))
+                {
+                    AddToFilmsAVoirButtonText = "Film ajouté";
+                }
 
                 // récupération du film avec l'id en paramètre
                 Movie = await _movieInterface.GetMovieById(MovieId);
@@ -52,6 +60,15 @@ namespace Jacquet_Valet_App.ViewModels
                 LoadMovieCommand.Execute(null);
             }
         }
+
+        [RelayCommand]
+        private void AddToFilmsAVoir()
+        {
+            if (Movie != null && !MovieDataService.FilmsAVoir.Any(m => m.Id == Movie.Id))
+            {
+                MovieDataService.FilmsAVoir.Add(Movie);
+                AddToFilmsAVoirButtonText = "Film ajouté";
+            }
+        }
     }
 }
-

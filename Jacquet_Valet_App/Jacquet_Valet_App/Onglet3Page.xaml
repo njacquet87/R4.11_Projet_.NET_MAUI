@@ -13,7 +13,9 @@
         <Label Text="Poster du film : " HorizontalOptions="Center" Margin="0,10,0,10"/>
         
         <HorizontalStackLayout HorizontalOptions="Center" Spacing="5" Margin="0,20,0,20">
-            <Image x:Name="SelectedImage" HeightRequest="200" WidthRequest="100" Margin="0,10,0,10" BackgroundColor="White"/>
+            <Frame CornerRadius="10" BorderColor="Gray" Padding="0" HasShadow="True" HeightRequest="200" WidthRequest="100" Margin="0,10,0,10">
+                <Image x:Name="SelectedImage" Aspect="AspectFill" BackgroundColor="White"/>
+            </Frame>
 
             <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
                 <Button Text="Choisir une image" Clicked="OnPickPhotoButtonClicked" HorizontalOptions="Center"/>
