@@ -14,5 +14,6 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(GifPage), typeof(GifPage));
         Routing.RegisterRoute("detail", typeof(DetailPage));
         Routing.RegisterRoute(nameof(FilmsAVoirPage), typeof(FilmsAVoirPage));
+        Routing.RegisterRoute(nameof(FilmsVusPage), typeof(FilmsVusPage));
     }
 }

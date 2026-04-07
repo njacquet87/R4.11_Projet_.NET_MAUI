@@ -22,6 +22,7 @@
                 </HorizontalStackLayout>
                 
                 <Button Text="{Binding AddToFilmsAVoirButtonText}" Command="{Binding AddToFilmsAVoirCommand}" HorizontalOptions="Center" />
+                <Button Text="Ajouter aux films vus" Command="{Binding AddToFilmsVusCommand}" HorizontalOptions="Center" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

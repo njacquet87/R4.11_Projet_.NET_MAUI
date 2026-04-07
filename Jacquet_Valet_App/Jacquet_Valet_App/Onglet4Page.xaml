@@ -6,7 +6,8 @@
 
     <StackLayout Padding="20">
         <HorizontalStackLayout HorizontalOptions="Center" Spacing="5" Margin="0,20,0,20">
-            <Button Text="Films à voir" Clicked="OnButtonClick" />
+            <Button Text="Films à voir" Clicked="OnFilmsAVoirClicked" />
+            <Button Text="Films vus" Clicked="OnFilmsVusClicked" />
         </HorizontalStackLayout>
     </StackLayout>
     

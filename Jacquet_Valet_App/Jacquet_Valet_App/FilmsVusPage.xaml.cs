@@ -2,11 +2,11 @@
 
 namespace Jacquet_Valet_App;
 
-public partial class FilmsAVoirPage : ContentPage
+public partial class FilmsVusPage : ContentPage
 {
     private readonly MoviesViewModel _viewModel;
     
-    public FilmsAVoirPage(MoviesViewModel viewModel)
+    public FilmsVusPage(MoviesViewModel viewModel)
     {
         InitializeComponent();
         _viewModel = viewModel;

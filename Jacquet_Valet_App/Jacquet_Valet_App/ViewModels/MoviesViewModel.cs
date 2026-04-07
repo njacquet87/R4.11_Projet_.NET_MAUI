@@ -17,6 +17,12 @@ namespace Jacquet_Valet_App.ViewModels
         private ObservableCollection<MovieDto> movieList;
 
         [ObservableProperty]
+        private ObservableCollection<MovieDto> filmsAVoir;
+
+        [ObservableProperty]
+        private ObservableCollection<MovieDto> filmsVus;
+
+        [ObservableProperty]
         private string errorMessage;
 
         [ObservableProperty]
@@ -27,6 +33,8 @@ namespace Jacquet_Valet_App.ViewModels
         {
             _movieInterface = movieInterface;
             MovieList = MovieDataService.Movies; // Utiliser la collection partagée
+            FilmsAVoir = MovieDataService.FilmsAVoir;
+            FilmsVus = MovieDataService.FilmsVus;
             errorMessage = string.Empty;
         }
 

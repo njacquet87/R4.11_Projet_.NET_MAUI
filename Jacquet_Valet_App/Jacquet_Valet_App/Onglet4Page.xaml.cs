@@ -13,8 +13,13 @@ public partial class Onglet4Page : ContentPage
         BindingContext = _viewModel;
     }
 
-    async void OnButtonClick(object sender, EventArgs e)
+    async void OnFilmsAVoirClicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync(nameof(FilmsAVoirPage));
+    }
+
+    async void OnFilmsVusClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(FilmsVusPage));
     }
 }

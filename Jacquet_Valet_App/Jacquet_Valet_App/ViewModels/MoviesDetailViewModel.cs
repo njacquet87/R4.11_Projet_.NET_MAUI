@@ -22,10 +22,14 @@ namespace Jacquet_Valet_App.ViewModels
         [ObservableProperty]
         private string addToFilmsAVoirButtonText;
 
+        [ObservableProperty]
+        private string addToFilmsVusButtonText;
+
         public MoviesDetailViewModel(MovieInterface movieInterface)
         {
             _movieInterface = movieInterface;
             AddToFilmsAVoirButtonText = "Ajouter aux films à voir";
+            AddToFilmsVusButtonText = "Ajouter aux films vus";
         }
 
         [RelayCommand]
@@ -37,10 +41,8 @@ namespace Jacquet_Valet_App.ViewModels
             // pour éviter de faire planter l'application
             try
             {
-                if (MovieDataService.FilmsAVoir.Any(dto => dto.Id == Movie.Id))
-                {
-                    AddToFilmsAVoirButtonText = "Film ajouté";
-                }
+                AddToFilmsAVoirButtonText = "Ajouter aux films à voir";
+                AddToFilmsVusButtonText = "Ajouter aux films vus";
 
                 // récupération du film avec l'id en paramètre
                 Movie = await _movieInterface.GetMovieById(MovieId);
@@ -49,6 +51,18 @@ namespace Jacquet_Valet_App.ViewModels
             {
                 // si le film n'est pas trouvé on prend depuis la collection partagée pour éviter de faire planter l'application
                 Movie = MovieDataService.Movies.FirstOrDefault(m => m.Id == MovieId);
+            }
+
+            if (Movie != null)
+            {
+                if (MovieDataService.FilmsAVoir.Any(m => m.Id == Movie.Id))
+                {
+                    AddToFilmsAVoirButtonText = "Film ajouté";
+                }
+                if (MovieDataService.FilmsVus.Any(m => m.Id == Movie.Id))
+                {
+                    AddToFilmsVusButtonText = "Film ajouté";
+                }
             }
         }
         
@@ -68,6 +82,16 @@ namespace Jacquet_Valet_App.ViewModels
             {
                 MovieDataService.FilmsAVoir.Add(Movie);
                 AddToFilmsAVoirButtonText = "Film ajouté";
+            }
+        }
+
+        [RelayCommand]
+        private void AddToFilmsVus()
+        {
+            if (Movie != null && !MovieDataService.FilmsVus.Any(m => m.Id == Movie.Id))
+            {
+                MovieDataService.FilmsVus.Add(Movie);
+                AddToFilmsVusButtonText = "Film ajouté";
             }
         }
     }

@@ -7,5 +7,6 @@ namespace Jacquet_Valet_App.Services
     {
         public static ObservableCollection<MovieDto> Movies { get; } = new ObservableCollection<MovieDto>();
         public static ObservableCollection<MovieDto> FilmsAVoir { get; } = new ObservableCollection<MovieDto>();
+        public static ObservableCollection<MovieDto> FilmsVus { get; } = new ObservableCollection<MovieDto>();
     }
 }
