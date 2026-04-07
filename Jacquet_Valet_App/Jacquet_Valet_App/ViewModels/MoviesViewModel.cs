@@ -76,5 +76,23 @@ namespace Jacquet_Valet_App.ViewModels
 
             await Shell.Current.GoToAsync($"detail?id={movie.Id}");
         }
+
+        [RelayCommand]
+        private void RemoveFromFilmsAVoir(MovieDto movie)
+        {
+            if (movie != null)
+            {
+                FilmsAVoir.Remove(movie);
+            }
+        }
+
+        [RelayCommand]
+        private void RemoveFromFilmsVus(MovieDto movie)
+        {
+            if (movie != null)
+            {
+                FilmsVus.Remove(movie);
+            }
+        }
     }
 }
