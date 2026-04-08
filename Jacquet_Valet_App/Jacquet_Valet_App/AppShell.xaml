@@ -23,7 +23,7 @@
             <ShellContent ContentTemplate="{DataTemplate local:Onglet3Page}"></ShellContent>
         </Tab>
         
-        <Tab Title="onglet4" Icon="dotnet_bot.png">
+        <Tab Title="onglet4" Icon="search.png">
             <ShellContent ContentTemplate="{DataTemplate local:Onglet4Page}"></ShellContent>
         </Tab>
     </TabBar>
