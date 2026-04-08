@@ -5,6 +5,11 @@
              Title="Films vus">
     <StackLayout Padding="20">
         <Label Text="Liste des films vus" FontSize="24" HorizontalOptions="Center" FontAttributes="Bold"/>
+        
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="5" Margin="0,10,0,10">
+            <Label Text="{Binding NbFilmsVus}"></Label>
+            <Label Text="films vu."></Label>
+        </HorizontalStackLayout>
 
         <CollectionView ItemsSource="{Binding FilmsVus}"
                         SelectionMode="None"

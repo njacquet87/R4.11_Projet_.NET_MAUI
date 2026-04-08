@@ -27,6 +27,12 @@ namespace Jacquet_Valet_App.ViewModels
 
         [ObservableProperty]
         private bool isErrorVisible;
+        
+        [ObservableProperty]
+        private int nbFilmsAVoir;
+        
+        [ObservableProperty]
+        private int nbFilmsVus;
 
         // constructeur qui injecte l'interface MovieInterface pour accéder aux données des films
         public MoviesViewModel(MovieInterface movieInterface)
@@ -36,6 +42,13 @@ namespace Jacquet_Valet_App.ViewModels
             FilmsAVoir = MovieDataService.FilmsAVoir;
             FilmsVus = MovieDataService.FilmsVus;
             errorMessage = string.Empty;
+            IsErrorVisible = false;
+            NbFilmsAVoir = FilmsAVoir.Count;
+            NbFilmsVus = FilmsVus.Count;
+
+            // Abonnement aux événements de changement de collection pour mettre à jour les compteurs
+            FilmsAVoir.CollectionChanged += (s, e) => NbFilmsAVoir = FilmsAVoir.Count;
+            FilmsVus.CollectionChanged += (s, e) => NbFilmsVus = FilmsVus.Count;
         }
 
         // relayCommand permet de charger les films de manière asynchrone et de gérer les erreurs éventuelles
