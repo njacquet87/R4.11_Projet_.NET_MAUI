@@ -4,11 +4,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Jacquet_Valet_App.Onglet4Page">
 
-    <StackLayout Padding="20">
-        <HorizontalStackLayout HorizontalOptions="Center" Spacing="5" Margin="0,20,0,20">
-            <Button Text="Films à voir" Clicked="OnFilmsAVoirClicked" />
-            <Button Text="Films vus" Clicked="OnFilmsVusClicked" />
-        </HorizontalStackLayout>
-    </StackLayout>
-    
+    <ScrollView>
+        <StackLayout Padding="20">
+        
+            <!-- Boutons de navigation -->
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="5" Margin="0,20,0,20">
+                <Button Text="Films à voir" Clicked="OnFilmsAVoirClicked" />
+                <Button Text="Films vus" Clicked="OnFilmsVusClicked" />
+            </HorizontalStackLayout>
+
+            <!-- Barre de recherche -->
+            <Entry 
+                x:Name="SearchEntry"
+                Placeholder="Rechercher un film..."
+                ReturnCommand="{Binding SearchCommand}"
+                ReturnCommandParameter="{Binding Source={x:Reference SearchEntry}, Path=Text}" />
+
+            <!-- Message si aucun film trouvé -->
+            <Label Text="Aucun film trouvé" 
+                   IsVisible="{Binding IsNoMoviesFound}"
+                   HorizontalOptions="Center"
+                   FontSize="16"
+                   TextColor="Gray"
+                   Margin="0,20,0,20"/>
+
+            <!-- CollectionView pour afficher les films -->
+            <CollectionView ItemsSource="{Binding MovieList}" SelectionMode="Single" HeightRequest="700">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="8" Spacing="10" Margin="5">
+                            <Label Text="{Binding Title}" FontSize="13" FontAttributes="Bold" HorizontalOptions="Center" TextColor="White"/>
+                            <ImageButton Source="{Binding PosterURL}" 
+                                         Aspect="AspectFill" 
+                                         HeightRequest="300" 
+                                         WidthRequest="200"
+                                         CornerRadius="10"
+                                         BorderColor="Gray"
+                                         BorderWidth="1"
+                                         Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.GoToDetailCommand}" 
+                                         CommandParameter="{Binding .}"
+                                         BackgroundColor="White"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

@@ -34,6 +34,9 @@ namespace Jacquet_Valet_App.ViewModels
         [ObservableProperty]
         private int nbFilmsVus;
 
+        [ObservableProperty]
+        private bool isNoMoviesFound;
+
         // constructeur qui injecte l'interface MovieInterface pour accéder aux données des films
         public MoviesViewModel(MovieInterface movieInterface)
         {
@@ -57,13 +60,12 @@ namespace Jacquet_Valet_App.ViewModels
         {
             IsErrorVisible = false;
             ErrorMessage = string.Empty;
-
+        
             try
             {
                 var movies = await _movieInterface.GetAllMovies();
                 if (movies != null)
                 {
-                    // Ajoute uniquement les films qui ne sont pas déjà dans la liste
                     foreach (var movie in movies)
                     {
                         if (!MovieList.Any(m => m.ImdbId == movie.ImdbId))
@@ -105,6 +107,27 @@ namespace Jacquet_Valet_App.ViewModels
             if (movie != null)
             {
                 FilmsVus.Remove(movie);
+            }
+        }
+        
+        [RelayCommand]
+        private void Search(string searchText)
+        {
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                // Si le texte de recherche est vide, afficher tous les films
+                MovieList = new ObservableCollection<MovieDto>(MovieDataService.Movies);
+                IsNoMoviesFound = false;
+            }
+            else
+            {
+                // Filtrer les films en fonction du texte de recherche (par titre)
+                var filteredMovies = MovieDataService.Movies
+                    .Where(m => m.Title != null && m.Title.Contains(searchText, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+
+                MovieList = new ObservableCollection<MovieDto>(filteredMovies);
+                IsNoMoviesFound = filteredMovies.Count == 0;
             }
         }
     }
